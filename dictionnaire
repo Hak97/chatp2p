@@ -47,8 +47,8 @@ print("la liste d'IPs: ", ips)
 
 #Future dictionnaire
 d = {}
-i = 0
 #On ramplie le dictionnaires a partir de deux listes
+i = 0
 for n in names:
     d[n] = ips[i]
     i = i + 1
