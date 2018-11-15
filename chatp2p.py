@@ -96,10 +96,35 @@ class Client:
  
 
     def receive(self):
-            while True:
+                    
+        data = ""
+	
+        while 1:
+            if data == "quit":
+                run=False
+                s.close()
+                break
+            socks=[s]
+
+
+            lin, lout, lex=select(socks, [stdin], [])
+
+	    
+            for t in lin:
+                if t==s: 
                     data = s.recv(1024)
                     if data:
                         print(data)
+		
+                   
+            for x in lout:
+		
+		if select([stdin,],[],[],0.0)[0]:
+		    if x == stdin :
+		        data = stdin.readline().strip("\n")
+		        print ("entree clavier : %s" % data) 
+
+
 		
 
     def start(self):
