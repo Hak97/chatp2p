@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+#future chaine de nicknames et des IPs
+listNickIPs = ""
+#example du dictionnaire
+connection = {'bob': '192.168.0.1', 'alice': '192.168.0.2', 'charlie': '192.168.0.3'}
+print("Dictionnaire de depart: ", connection)
+
+#on remplie la chaine de nicknames et IPs
+count = 0
+for name in connection:
+    if count == 0:
+        listNickIPs = listNickIPs + "("
+    count = count + 1
+    listNickIPs = listNickIPs + name + ":" + connection.get(name)
+
+    if count != len(connection):
+        listNickIPs = listNickIPs + ","
+    else:
+        listNickIPs = listNickIPs + ")"
+
+print("Chaine de nicknames et IPs ", listNickIPs)
+print()
+
+#nouvelle liste sans paranteses
+for char in '()':
+    listNickIPs = listNickIPs.replace(char, '')
+
+print("Nouvelle chaine: ", listNickIPs)
+
+names = []
+ips = []
+
+#Liste de nicknames et IPs
+namesIPs = listNickIPs.split(",")
+print("Liste de nicknames et IPs: ", namesIPs)
+print()
+
+#La liste de nicknames et la liste d'IPs
+for ni in namesIPs:
+    names.append(ni.split(":")[0])
+    ips.append(ni.split(":")[1])
+
+
+print("La liste de nicknames : ", names)
+print("la liste d'IPs: ", ips)
+
+#Future dictionnaire
+d = {}
+i = 0
+#On ramplie le dictionnaires a partir de deux listes
+for n in names:
+    d[n] = ips[i]
+    i = i + 1
+
+print("Nouveau dictionnaire: ", d)
+print("Vieux: dictionnaire", connection)
